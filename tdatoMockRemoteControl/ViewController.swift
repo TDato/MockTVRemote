@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentChannelLabel: UILabel!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var powerSwitch: UISwitch!
+    @IBOutlet weak var favChannelSegment: UISegmentedControl!
+    var favChannels : [String] = [ "72", "15", "56", "62" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +29,30 @@ class ViewController: UIViewController {
         enableAllControls(false)
     }
 
-    @IBAction func segementToggled(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex
-        {
-        case 0:
-            channelDisplayText = "72"
-        case 1:
-            channelDisplayText = "15"
-        case 2:
-            channelDisplayText = "56"
-        case 3:
-            channelDisplayText = "62"
-        default:
-            break
-        }
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        favChannelSegment.setTitle(chLabel, forSegmentAt: buttonSelection)
+        favChannels[buttonSelection] = chNum!
         
-        currentChannelLabel.text = channelDisplayText
+        
+    }
+    @IBAction func segementToggled(_ sender: UISegmentedControl) {
+//        switch sender.selectedSegmentIndex
+//        {
+//        case 0:
+//            channelDisplayText = "72"
+//        case 1:
+//            channelDisplayText = "15"
+//        case 2:
+//            channelDisplayText = "56"
+//        case 3:
+//            channelDisplayText = "62"
+//        default:
+//            break
+//        }
+        
+        currentChannelLabel.text = favChannels[sender.selectedSegmentIndex]
     }
     @IBAction func powerSwitchToggled(_ sender: UISwitch) {
         powerStatusLabel.text = sender.isOn ? "On" : "Off"
