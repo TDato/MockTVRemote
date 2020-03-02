@@ -100,9 +100,7 @@ class DVRViewController: UIViewController {
     }
     
     
-    @IBAction func switchToTV(_ sender: UIBarButtonItem) {
-         dismiss(animated: true, completion: nil)
-    }
+
      
     
     /*
